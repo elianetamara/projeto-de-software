@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Pessoa {
 
-    public String nome;
-    public int idade;
-    public String cpf;
-    public String telefone;
-    public List<Endereco> endereco;
-    public String profissao;
+    private String nome;
+    private int idade;
+    private String cpf;
+    private String telefone;
+    private List<Endereco> endereco;
+    private String profissao;
 
     public Pessoa(String nome, int idade, String cpf, String telefone, String profissao) {
         this.nome = nome;

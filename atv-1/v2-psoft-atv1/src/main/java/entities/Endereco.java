@@ -2,8 +2,8 @@ package entities;
 
 public class Endereco {
 
-    public String rua;
-    public String cep;
+    private String rua;
+    private String cep;
 
     public Endereco(String rua, String cep) {
         this.rua = rua;
