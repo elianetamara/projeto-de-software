@@ -50,4 +50,10 @@ public class PessoaRepository {
         pessoa.addEndereco(endereco);
         return this.updatePessoa(cpf, pessoa);
     }
+
+    public boolean deleteEnderecoInPessoa(String cpf, String idEnderecoRemovido){
+        Pessoa pessoa = this.getPessoa(cpf);
+        pessoa.getEnderecos().removeIf(x -> x.getId().equals(idEnderecoRemovido));
+        return this.updatePessoa(cpf, pessoa);
+    }
 }

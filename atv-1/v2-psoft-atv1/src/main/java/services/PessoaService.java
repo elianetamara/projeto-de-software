@@ -21,11 +21,7 @@ public class PessoaService {
 
     public PessoaResponseDTO getPessoa(String cpf){
         Pessoa pessoa = this.repository.getPessoa(cpf);
-        if(pessoa != null){
-            return new PessoaResponseDTO(pessoa);
-        }else {
-            return null;
-        }
+        return pessoa != null ? new PessoaResponseDTO(pessoa) : null;
     }
 
     public PessoaResponseDTO updatePessoa(PessoaRequestDTO pessoaDTO){
@@ -41,5 +37,9 @@ public class PessoaService {
 
     public PessoaResponseDTO addNewEnderecoInPessoa(String cpf, String id){
         return this.repository.addNewEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
+    }
+
+    public PessoaResponseDTO deleteEnderecoInPessoa(String cpf, String id){
+        return this.repository.deleteEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
     }
 }

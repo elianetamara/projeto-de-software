@@ -37,4 +37,9 @@ public class PessoaController {
         return this.service.addNewEnderecoInPessoa(cpf, endereco.id());
     }
 
+    public PessoaResponseDTO deleteEnderecoInPessoa(String cpf, String id){
+        EnderecoResponseDTO removido = this.enderecoController.deleteEndereco(id);
+        return this.service.deleteEnderecoInPessoa(cpf, removido.id());
+    }
+
 }
