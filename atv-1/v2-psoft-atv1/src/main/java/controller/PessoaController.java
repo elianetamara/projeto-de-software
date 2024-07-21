@@ -1,38 +1,38 @@
 package controller;
 
-import dto.PessoaDTO;
-import services.EnderecoService;
+import dto.response.PessoaResponseDTO;
+import dto.request.PessoaRequestDTO;
 import services.PessoaService;
 
 public class PessoaController {
 
     private PessoaService service;
-    private EnderecoService enderecoService;
+    private EnderecoController enderecoController;
 
-    public PessoaController(PessoaService service) {
-        this.service = service;
+    public PessoaController() {
+        this.service = new PessoaService();
+        enderecoController = new EnderecoController();
     }
 
-    public boolean createPessoa(String nome, int idade, String cpf, String telefone, String profissao, String rua, String cep) {
-        this.enderecoService.createEndereco(rua, cep);
-        return this.service.createPessoa(nome, idade, cpf, telefone, profissao, rua);
+    public PessoaResponseDTO createPessoa(PessoaRequestDTO pessoaDTO) {
+        return this.service.createPessoa(pessoaDTO);
     }
 
-    public PessoaDTO getPessoa(String cpf){
+    public PessoaResponseDTO getPessoa(String cpf){
         return this.service.getPessoa(cpf);
     }
 
-    public boolean updatePessoa(String cpf, int idade, String telefone, String profissao){
-        return this.service.updatePessoa(cpf, idade, telefone, profissao);
+    public PessoaResponseDTO updatePessoa(PessoaRequestDTO pessoaDTO){
+        return this.service.updatePessoa(pessoaDTO);
     }
 
-    public boolean deletePessoa(String cpf){
+    public PessoaResponseDTO deletePessoa(String cpf){
         return this.service.deletePessoa(cpf);
     }
 
-    public boolean addNewEnderecoInPessoa(String cpf, String rua, String cep){
-        this.enderecoService.createEndereco(rua, cep);
-        return this.service.addNewEnderecoInPessoa(cpf, rua);
-    }
+//    public PessoaResponseDTO addNewEnderecoInPessoa(String cpf, String rua, String cep){
+//        this.enderecoController.createEndereco(rua, cep);
+//        return this.service.addNewEnderecoInPessoa(cpf, rua);
+//    }
 
 }

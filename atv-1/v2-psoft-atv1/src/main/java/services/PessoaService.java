@@ -1,45 +1,48 @@
 package services;
 
-import dto.PessoaDTO;
-import entities.Endereco;
+import dto.response.PessoaResponseDTO;
+import dto.request.PessoaRequestDTO;
 import entities.Pessoa;
-import repositories.EnderecoRepository;
 import repositories.PessoaRepository;
 
 public class PessoaService {
 
     private final PessoaRepository repository;
-    private EnderecoRepository enderecoRepository;
+    private EnderecoService enderecoService;
 
-    public PessoaService(PessoaRepository repository) {
-        this.repository = repository;
+    public PessoaService() {
+        this.repository = new PessoaRepository();
+        this.enderecoService = new EnderecoService();
     }
 
-    public boolean createPessoa(String nome, int idade, String cpf, String telefone, String profissao, String rua) {
-        Pessoa pessoa = new Pessoa(nome, idade, cpf, telefone, profissao);
-        Endereco endereco = this.enderecoRepository.getEndereco(rua);
-        return this.repository.createPessoa(pessoa, endereco);
+    public PessoaResponseDTO createPessoa(PessoaRequestDTO pessoaDTO) {
+        Pessoa pessoa = new Pessoa(pessoaDTO);
+        boolean adicionado = this.repository.createPessoa(pessoa);
+        return adicionado ? new PessoaResponseDTO(pessoa) : null;
     }
 
-    public PessoaDTO getPessoa(String cpf){
+    public PessoaResponseDTO getPessoa(String cpf){
         Pessoa pessoa = this.repository.getPessoa(cpf);
         if(pessoa != null){
-            return new PessoaDTO(pessoa);
+            return new PessoaResponseDTO(pessoa);
         }else {
             return null;
         }
     }
 
-    public boolean updatePessoa(String cpf, int idade, String telefone, String profissao){
-        return this.repository.updatePessoa(cpf, idade, telefone, profissao);
+    public PessoaResponseDTO updatePessoa(PessoaRequestDTO pessoaDTO){
+        Pessoa novaPessoa = new Pessoa(pessoaDTO);
+        boolean atualizado = this.repository.updatePessoa(pessoaDTO.cpf(), novaPessoa);
+        return atualizado ? new PessoaResponseDTO(novaPessoa) : null;
     }
 
-    public boolean deletePessoa(String cpf){
-        return this.repository.deletePessoa(cpf);
+    public PessoaResponseDTO deletePessoa(String cpf){
+        Pessoa removida = this.repository.deletePessoa(cpf);
+        return removida != null ? new PessoaResponseDTO(removida) : null;
     }
 
-    public boolean addNewEnderecoInPessoa(String cpf, String rua){
-        Endereco endereco = enderecoRepository.getEndereco(rua);
-        return this.repository.addNewEnderecoInPessoa(cpf, endereco);
-    }
+//    public boolean addNewEnderecoInPessoa(String cpf, String rua){
+//        Endereco endereco = enderecoRepository.getEndereco(rua);
+//        return this.repository.addNewEnderecoInPessoa(cpf, endereco);
+//    }
 }
