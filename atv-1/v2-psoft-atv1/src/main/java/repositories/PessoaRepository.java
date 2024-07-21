@@ -9,9 +9,11 @@ import java.util.List;
 public class PessoaRepository {
 
     private final List<Pessoa> pessoas;
+    private EnderecoRepository enderecoRepository;
 
     public PessoaRepository() {
         this.pessoas = new ArrayList<>();
+        this.enderecoRepository = new EnderecoRepository();
     }
 
     public boolean createPessoa(Pessoa pessoa) {
@@ -42,10 +44,10 @@ public class PessoaRepository {
         return this.pessoas.remove(pessoa) ? pessoa : null;
     }
 
-    public boolean addNewEnderecoInPessoa(String cpf, Endereco endereco){
+    public boolean addNewEnderecoInPessoa(String cpf, String id){
         Pessoa pessoa = this.getPessoa(cpf);
-        int idx = this.pessoas.indexOf(pessoa);
-        this.pessoas.get(idx).addEndereco(endereco);
-        return true;
+        Endereco endereco = this.enderecoRepository.getEndereco(id);
+        pessoa.addEndereco(endereco);
+        return this.updatePessoa(cpf, pessoa);
     }
 }

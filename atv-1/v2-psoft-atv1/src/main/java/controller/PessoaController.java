@@ -1,5 +1,7 @@
 package controller;
 
+import dto.request.EnderecoRequestDTO;
+import dto.response.EnderecoResponseDTO;
 import dto.response.PessoaResponseDTO;
 import dto.request.PessoaRequestDTO;
 import services.PessoaService;
@@ -30,9 +32,9 @@ public class PessoaController {
         return this.service.deletePessoa(cpf);
     }
 
-//    public PessoaResponseDTO addNewEnderecoInPessoa(String cpf, String rua, String cep){
-//        this.enderecoController.createEndereco(rua, cep);
-//        return this.service.addNewEnderecoInPessoa(cpf, rua);
-//    }
+    public PessoaResponseDTO addNewEnderecoInPessoa(String cpf, EnderecoRequestDTO enderecoDTO){
+        EnderecoResponseDTO endereco = this.enderecoController.createEndereco(enderecoDTO);
+        return this.service.addNewEnderecoInPessoa(cpf, endereco.id());
+    }
 
 }

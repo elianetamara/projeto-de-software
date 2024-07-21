@@ -8,11 +8,9 @@ import repositories.PessoaRepository;
 public class PessoaService {
 
     private final PessoaRepository repository;
-    private EnderecoService enderecoService;
 
     public PessoaService() {
         this.repository = new PessoaRepository();
-        this.enderecoService = new EnderecoService();
     }
 
     public PessoaResponseDTO createPessoa(PessoaRequestDTO pessoaDTO) {
@@ -41,8 +39,7 @@ public class PessoaService {
         return removida != null ? new PessoaResponseDTO(removida) : null;
     }
 
-//    public boolean addNewEnderecoInPessoa(String cpf, String rua){
-//        Endereco endereco = enderecoRepository.getEndereco(rua);
-//        return this.repository.addNewEnderecoInPessoa(cpf, endereco);
-//    }
+    public PessoaResponseDTO addNewEnderecoInPessoa(String cpf, String id){
+        return this.repository.addNewEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
+    }
 }
