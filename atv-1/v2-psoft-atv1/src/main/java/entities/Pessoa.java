@@ -1,15 +1,17 @@
 package entities;
 
+import dto.request.PessoaRequestDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pessoa {
 
+    private String cpf;
     private String nome;
     private int idade;
-    private String cpf;
     private String telefone;
-    private List<Endereco> endereco;
+    private List<Endereco> enderecos;
     private String profissao;
 
     public Pessoa(String nome, int idade, String cpf, String telefone, String profissao) {
@@ -18,7 +20,12 @@ public class Pessoa {
         this.cpf = cpf;
         this.telefone = telefone;
         this.profissao = profissao;
-        this.endereco = new ArrayList<>();
+        this.enderecos = new ArrayList<>();
+    }
+
+    public Pessoa(PessoaRequestDTO pessoaDTO) {
+        this(pessoaDTO.nome(), pessoaDTO.idade(), pessoaDTO.cpf(), pessoaDTO.telefone(), pessoaDTO.profissao());
+        this.enderecos = new ArrayList<>();
     }
 
     public void setIdade(int idade) {
@@ -34,7 +41,7 @@ public class Pessoa {
     }
 
     public void addEndereco(Endereco endereco) {
-        this.endereco.add(endereco);
+        this.enderecos.add(endereco);
     }
 
     public String getNome() {
@@ -53,8 +60,8 @@ public class Pessoa {
         return telefone;
     }
 
-    public List<Endereco> getEndereco() {
-        return endereco;
+    public List<Endereco> getEnderecos() {
+        return enderecos;
     }
 
     public String getProfissao() {
