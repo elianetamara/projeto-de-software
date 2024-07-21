@@ -12,13 +12,13 @@ public class EnderecoService {
         this.repository = repository;
     }
 
-    public boolean createEndereco(String rua, String cep) {
-        Endereco endereco = new Endereco(rua, cep);
+    public boolean createEndereco(EnderecoDTO enderecoDTO) {
+        Endereco endereco = new Endereco(enderecoDTO);
         return this.repository.createEndereco(endereco);
     }
 
-    public EnderecoDTO getEndereco(String rua){
-        Endereco e = this.repository.getEndereco(rua);
+    public EnderecoDTO getEndereco(String id){
+        Endereco e = this.repository.getEndereco(id);
         if(e != null){
             return new EnderecoDTO(e);
         }else{
@@ -26,11 +26,12 @@ public class EnderecoService {
         }
     }
 
-    public boolean updateEndereco(String rua, String cep){
-        return this.repository.updateEndereco(rua, cep);
+    public boolean updateEndereco(String id, EnderecoDTO enderecoDTO){
+        Endereco novoEndereco = new Endereco(enderecoDTO);
+        return this.repository.updateEndereco(id, novoEndereco);
     }
 
-    public boolean deleteEndereco(String rua){
-        return this.repository.deleteEndereco(rua);
+    public boolean deleteEndereco(String id){
+        return this.repository.deleteEndereco(id);
     }
 }

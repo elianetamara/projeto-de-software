@@ -11,19 +11,19 @@ public class EnderecoController {
         this.service = service;
     }
 
-    public boolean createEndereco(String rua, String bairro, String numero, String cep) {
-        return this.service.createEndereco(rua, cep);
+    public boolean createEndereco(EnderecoDTO enderecoDTO) {
+        return this.service.createEndereco(enderecoDTO);
     }
 
-    public EnderecoDTO getEndereco(String rua){
-        return this.service.getEndereco(rua);
+    public EnderecoDTO getEndereco(String id){
+        return this.service.getEndereco(id);
     }
 
-    public boolean updateEndereco(String rua, String cep){
-        return this.service.updateEndereco(rua, cep);
+    public boolean updateEndereco(String id, EnderecoDTO enderecoDTO){
+        return this.service.updateEndereco(id, enderecoDTO);
     }
 
-    public boolean deleteEndereco(String rua){
-        return this.service.deleteEndereco(rua);
+    public boolean deleteEndereco(String id){
+        return this.service.deleteEndereco(id);
     }
 }

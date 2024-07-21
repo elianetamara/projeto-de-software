@@ -14,29 +14,30 @@ public class EnderecoRepository {
     }
 
     public boolean createEndereco(Endereco endereco) {
+        if (this.enderecos.contains(endereco)) {
+            return false;
+        }
         this.enderecos.add(endereco);
         return true;
     }
 
-    public Endereco getEndereco(String rua){
-        Endereco endereco = null;
-        for (Endereco e: enderecos){
-            if(e.getRua().equals(rua)){
-                endereco = e;
+    public Endereco getEndereco(String id){
+        for (Endereco endereco : this.enderecos) {
+            if (endereco.getId().equals(id)) {
+                return endereco;
             }
         }
-        return endereco;
+        return null;
     }
 
-    public boolean updateEndereco(String rua, String cep){
-        Endereco endereco = this.getEndereco(rua);
-        int idx = this.enderecos.indexOf(endereco);
-        this.enderecos.get(idx).setCep(cep);
+    public boolean updateEndereco(String id, Endereco novoEndereco){
+        Endereco enderecoPersistido = this.getEndereco(id);
+        this.enderecos.set(enderecos.indexOf(enderecoPersistido), novoEndereco);
         return true;
     }
 
-    public boolean deleteEndereco(String rua){
-        Endereco endereco = this.getEndereco(rua);
+    public boolean deleteEndereco(String id){
+        Endereco endereco = this.getEndereco(id);
         this.enderecos.remove(endereco);
         return true;
     }
