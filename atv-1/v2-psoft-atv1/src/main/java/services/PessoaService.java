@@ -39,6 +39,10 @@ public class PessoaService {
         return this.repository.addNewEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
     }
 
+    public PessoaResponseDTO updateEnderecoInPessoa(String cpf, String id){
+        return this.repository.updateEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
+    }
+
     public PessoaResponseDTO deleteEnderecoInPessoa(String cpf, String id){
         return this.repository.deleteEnderecoInPessoa(cpf, id) ? this.getPessoa(cpf) : null;
     }

@@ -37,6 +37,11 @@ public class PessoaController {
         return this.service.addNewEnderecoInPessoa(cpf, endereco.id());
     }
 
+    public PessoaResponseDTO updateEnderecoInPessoa(String cpf, String id, EnderecoRequestDTO enderecoDTO){
+        EnderecoResponseDTO endereco = this.enderecoController.updateEndereco(id, enderecoDTO);
+        return this.service.updateEnderecoInPessoa(cpf, endereco.id());
+    }
+
     public PessoaResponseDTO deleteEnderecoInPessoa(String cpf, String id){
         EnderecoResponseDTO removido = this.enderecoController.deleteEndereco(id);
         return this.service.deleteEnderecoInPessoa(cpf, removido.id());
