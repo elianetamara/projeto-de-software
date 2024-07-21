@@ -17,8 +17,7 @@ public class EnderecoRepository {
         if (this.enderecos.contains(endereco)) {
             return false;
         }
-        this.enderecos.add(endereco);
-        return true;
+        return this.enderecos.add(endereco);
     }
 
     public Endereco getEndereco(String id) {
@@ -36,9 +35,8 @@ public class EnderecoRepository {
         return true;
     }
 
-    public boolean deleteEndereco(String id) {
+    public Endereco deleteEndereco(String id) {
         Endereco endereco = this.getEndereco(id);
-        this.enderecos.remove(endereco);
-        return true;
+        return this.enderecos.remove(endereco) ? endereco : null;
     }
 }

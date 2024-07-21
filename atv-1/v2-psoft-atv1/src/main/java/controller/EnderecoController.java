@@ -1,6 +1,7 @@
 package controller;
 
-import dto.EnderecoDTO;
+import dto.request.EnderecoRequestDTO;
+import dto.response.EnderecoResponseDTO;
 import services.EnderecoService;
 
 public class EnderecoController {
@@ -11,19 +12,19 @@ public class EnderecoController {
         this.service = service;
     }
 
-    public boolean createEndereco(EnderecoDTO enderecoDTO) {
+    public EnderecoResponseDTO createEndereco(EnderecoRequestDTO enderecoDTO) {
         return this.service.createEndereco(enderecoDTO);
     }
 
-    public EnderecoDTO getEndereco(String id) {
+    public EnderecoResponseDTO getEndereco(String id) {
         return this.service.getEndereco(id);
     }
 
-    public boolean updateEndereco(String id, EnderecoDTO enderecoDTO) {
+    public EnderecoResponseDTO updateEndereco(String id, EnderecoRequestDTO enderecoDTO) {
         return this.service.updateEndereco(id, enderecoDTO);
     }
 
-    public boolean deleteEndereco(String id) {
+    public EnderecoResponseDTO deleteEndereco(String id) {
         return this.service.deleteEndereco(id);
     }
 }

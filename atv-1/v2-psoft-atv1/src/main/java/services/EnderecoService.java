@@ -1,6 +1,7 @@
 package services;
 
-import dto.EnderecoDTO;
+import dto.request.EnderecoRequestDTO;
+import dto.response.EnderecoResponseDTO;
 import entities.Endereco;
 import repositories.EnderecoRepository;
 
@@ -12,26 +13,31 @@ public class EnderecoService {
         this.repository = repository;
     }
 
-    public boolean createEndereco(EnderecoDTO enderecoDTO) {
+    public EnderecoResponseDTO createEndereco(EnderecoRequestDTO enderecoDTO) {
         Endereco endereco = new Endereco(enderecoDTO);
-        return this.repository.createEndereco(endereco);
+        boolean adicionado = this.repository.createEndereco(endereco);
+        return adicionado ? new EnderecoResponseDTO(endereco) : null;
     }
 
-    public EnderecoDTO getEndereco(String id) {
+    public EnderecoResponseDTO getEndereco(String id) {
         Endereco e = this.repository.getEndereco(id);
         if (e != null) {
-            return new EnderecoDTO(e);
-        } else {
-            return null;
+            return new EnderecoResponseDTO(e);
         }
+        return null;
     }
 
-    public boolean updateEndereco(String id, EnderecoDTO enderecoDTO) {
+    public EnderecoResponseDTO updateEndereco(String id, EnderecoRequestDTO enderecoDTO) {
         Endereco novoEndereco = new Endereco(enderecoDTO);
-        return this.repository.updateEndereco(id, novoEndereco);
+        boolean atualizado = this.repository.updateEndereco(id, novoEndereco);
+        return atualizado ? new EnderecoResponseDTO(novoEndereco) : null;
     }
 
-    public boolean deleteEndereco(String id) {
-        return this.repository.deleteEndereco(id);
+    public EnderecoResponseDTO deleteEndereco(String id) {
+        Endereco removido = this.repository.deleteEndereco(id);
+        if (removido != null) {
+            return new EnderecoResponseDTO(removido);
+        }
+        return null;
     }
 }

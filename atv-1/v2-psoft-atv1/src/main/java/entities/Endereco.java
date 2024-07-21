@@ -1,6 +1,6 @@
 package entities;
 
-import dto.EnderecoDTO;
+import dto.request.EnderecoRequestDTO;
 
 import java.util.Objects;
 
@@ -24,7 +24,7 @@ public class Endereco {
         this.setId();
     }
 
-    public Endereco(EnderecoDTO enderecoDTO) {
+    public Endereco(EnderecoRequestDTO enderecoDTO) {
         this(enderecoDTO.rua(), enderecoDTO.numero(), enderecoDTO.bairro(), enderecoDTO.cidade(), enderecoDTO.estado(), enderecoDTO.cep());
     }
 
