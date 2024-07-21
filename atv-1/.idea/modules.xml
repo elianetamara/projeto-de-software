@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/atv-1.iml" filepath="$PROJECT_DIR$/.idea/atv-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v1-psoft-atv1/v1-psoft-atv1.iml" filepath="$PROJECT_DIR$/v1-psoft-atv1/v1-psoft-atv1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/v2-psoft-atv1/v2-psoft-atv1.iml" filepath="$PROJECT_DIR$/v2-psoft-atv1/v2-psoft-atv1.iml" />
+    </modules>
+  </component>
+</project>
