@@ -9,8 +9,8 @@ public class EnderecoService {
 
     private final EnderecoRepository repository;
 
-    public EnderecoService(EnderecoRepository repository) {
-        this.repository = repository;
+    public EnderecoService() {
+        this.repository = new EnderecoRepository();
     }
 
     public EnderecoResponseDTO createEndereco(EnderecoRequestDTO enderecoDTO) {
@@ -21,10 +21,7 @@ public class EnderecoService {
 
     public EnderecoResponseDTO getEndereco(String id) {
         Endereco e = this.repository.getEndereco(id);
-        if (e != null) {
-            return new EnderecoResponseDTO(e);
-        }
-        return null;
+        return e != null ? new EnderecoResponseDTO(e) : null;
     }
 
     public EnderecoResponseDTO updateEndereco(String id, EnderecoRequestDTO enderecoDTO) {
@@ -35,9 +32,6 @@ public class EnderecoService {
 
     public EnderecoResponseDTO deleteEndereco(String id) {
         Endereco removido = this.repository.deleteEndereco(id);
-        if (removido != null) {
-            return new EnderecoResponseDTO(removido);
-        }
-        return null;
+        return removido != null ? new EnderecoResponseDTO(removido) : null;
     }
 }

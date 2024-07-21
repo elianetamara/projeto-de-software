@@ -8,8 +8,8 @@ public class EnderecoController {
 
     private final EnderecoService service;
 
-    public EnderecoController(EnderecoService service) {
-        this.service = service;
+    public EnderecoController() {
+        this.service = new EnderecoService();
     }
 
     public EnderecoResponseDTO createEndereco(EnderecoRequestDTO enderecoDTO) {
