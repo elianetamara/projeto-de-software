@@ -21,7 +21,7 @@ public class EnderecoRepository {
         return true;
     }
 
-    public Endereco getEndereco(String id){
+    public Endereco getEndereco(String id) {
         for (Endereco endereco : this.enderecos) {
             if (endereco.getId().equals(id)) {
                 return endereco;
@@ -30,13 +30,13 @@ public class EnderecoRepository {
         return null;
     }
 
-    public boolean updateEndereco(String id, Endereco novoEndereco){
+    public boolean updateEndereco(String id, Endereco novoEndereco) {
         Endereco enderecoPersistido = this.getEndereco(id);
         this.enderecos.set(enderecos.indexOf(enderecoPersistido), novoEndereco);
         return true;
     }
 
-    public boolean deleteEndereco(String id){
+    public boolean deleteEndereco(String id) {
         Endereco endereco = this.getEndereco(id);
         this.enderecos.remove(endereco);
         return true;
